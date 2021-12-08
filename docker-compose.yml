@@ -1,0 +1,26 @@
+
+version: '3.8'
+
+services:
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8081
+    volumes:
+      - ./myapp/:/usr/src/app/
+    ports:
+      - "8081:8081"
+    env_file:
+      - ./.env.dev
+    depends_on:
+      - db
+  db:
+    image: postgres:13.0-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=django_app
+      - POSTGRES_PASSWORD=django_app_pswd
+      - POSTGRES_DB=online_store
+
+volumes:
+  postgres_data:

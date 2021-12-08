@@ -1,5 +1,5 @@
 """
-WSGI config for zoo_Django_Acions project.
+WSGI config for zoo_Django_Actions project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'zoo_Django_Acions.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'zoo_Django_Actions.settings')
 
 application = get_wsgi_application()

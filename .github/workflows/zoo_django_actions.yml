@@ -66,7 +66,7 @@ jobs:
         pip install isort
         # stop the build if there are Python syntax errors or undefined names
         isort .
-        isort --check --diff
+        isort --check --diff --recursive --apply .
     - name: Setup test database
       env:
         POSTGRES_DB_NAME: ${{ matrix.database-name }}

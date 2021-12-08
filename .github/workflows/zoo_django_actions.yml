@@ -1,4 +1,4 @@
-name: OnlineStore Django Application
+name: Zoo Django Actions
 
 on: [push]
 
@@ -12,7 +12,7 @@ jobs:
       matrix:
         python-version: [ 3.6, 3.7, 3.8, 3.9]
         database-name:
-          - online-store-test
+          - zoo_django_actions
         database-password:
           - postgres
         database-user:
@@ -61,6 +61,11 @@ jobs:
         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+    - name: Sort imports
+      run: |
+        pip install isort
+        # stop the build if there are Python syntax errors or undefined names
+        isort --check-only --diff --recursive
     - name: Setup test database
       env:
         POSTGRES_DB_NAME: ${{ matrix.database-name }}

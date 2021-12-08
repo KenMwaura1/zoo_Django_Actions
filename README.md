@@ -17,7 +17,6 @@
 
 
 <!-- PROJECT LOGO -->
-<br />
 
 <h3 align="center">Zoo django Actions</h3>
 

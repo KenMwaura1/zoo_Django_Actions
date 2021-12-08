@@ -1,0 +1,113 @@
+name: OnlineStore Django Application
+
+on: [push]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 4
+      matrix:
+        python-version: [ 3.6, 3.7, 3.8, 3.9]
+        database-name:
+          - online-store-test
+        database-password:
+          - postgres
+        database-user:
+          - postgres
+        database-host:
+          - 127.0.0.1
+        database-port:
+          - 5432
+
+    services:
+      postgres:
+        image: postgres:latest
+        env:
+          POSTGRES_DB: ${{ matrix.database-name }}
+          POSTGRES_USER: ${{ matrix.database-user }}
+          POSTGRES_PASSWORD: ${{ matrix.database-password }}
+        ports:
+          - 5432:5432
+        # Set health checks to wait until postgres has started
+        options:
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+
+    steps:
+    - uses: actions/checkout@v2.4.0
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2.3.0
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    - name: Format with black
+      run: |
+        pip install black
+        # format the files with black
+        black .
+    - name: Lint with flake8
+      run: |
+        pip install flake8
+        # stop the build if there are Python syntax errors or undefined names
+        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+        # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
+        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+    - name: Setup test database
+      env:
+        POSTGRES_DB_NAME: ${{ matrix.database-name }}
+        POSTGRES_USER: ${{ matrix.database-user }}
+        POSTGRES_PASSWORD: ${{ matrix.database-password }}
+        POSTGRES_DB_HOST: ${{ matrix.database-host }}
+        POSTGRES_DB_PORT: ${{ matrix.database-port }}
+        POSTGRES_DB: ${{ matrix.database-name }}
+      run: |
+        export DATABASE_URL=postgres://${{ matrix.database-user }}:${{ matrix.database-password }}@${{ matrix.database-host }}:${{ matrix.database-port }}/${{ matrix.database-name }}
+        export SECRET_KEY=test-secret-key
+        export DEBUG=1
+    - name: Run migrations
+      run: |
+        export DATABASE_URL=postgres://${{ matrix.database-user }}:${{ matrix.database-password }}@${{ matrix.database-host }}:${{ matrix.database-port }}/${{ matrix.database-name }}
+        export SECRET_KEY=test-secret-key
+        export DEBUG=1
+        export ALLOWED_HOSTS=localhost
+        export GITHUB_WORKFLOW=True
+        export MODE=workflow
+        python manage.py makemigrations
+        python manage.py migrate
+        python manage.py migrate --run-syncdb
+        python manage.py check
+    - name: Run tests
+      run: |
+          python manage.py test
+      env:
+        DATABASE_URL: postgres://${{ matrix.database-user }}:${{ matrix.database-password }}@${{ matrix.database-host }}:${{ matrix.database-port }}/${{ matrix.database-name }}
+        SECRET_KEY: test-secret-key
+        DEBUG: 1
+        ALLOWED_HOSTS: localhost
+        GITHUB_WORKFLOW: True
+        MODE: workflow
+    - uses: actions/checkout@v2.4.0
+    - name: Build the images and start the containers
+      run: |
+        export GITHUB_WORKFLOW=True
+        export MODE="Test"
+        docker-compose -f docker-compose.yml build
+        docker-compose -f docker-compose.yml up -d
+        # run: docker-compose up -d --build
+    - name: Stop containers
+      if: always()
+      run: docker-compose -f "docker-compose.yml" down
+
+
+
+
+

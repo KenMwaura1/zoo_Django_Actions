@@ -40,7 +40,7 @@ jobs:
 
 
     steps:
-    - uses: actions/checkout@v2.4.0
+    - uses: actions/checkout@v3.0.2
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v4.2.0
       with:
@@ -101,7 +101,7 @@ jobs:
         ALLOWED_HOSTS: localhost
         GITHUB_WORKFLOW: True
         MODE: workflow
-    - uses: actions/checkout@v2.4.0
+    - uses: actions/checkout@v3.0.2
     - name: Build the images and start the containers
       run: |
         export GITHUB_WORKFLOW=True

@@ -7,6 +7,7 @@
 *** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
 -->
+[![Zoo Django Actions](https://github.com/KenMwaura1/zoo_Django_Actions/actions/workflows/zoo_django_actions.yml/badge.svg)](https://github.com/KenMwaura1/zoo_Django_Actions/actions/workflows/zoo_django_actions.yml)
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]

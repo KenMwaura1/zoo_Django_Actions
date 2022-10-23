@@ -69,9 +69,15 @@
 
 ### Built With
 
-* [Python 3.7](https://www.python.org/downloads/)
+* [Python 3.7+](https://www.python.org/downloads/)
 * [Django 3.2.10](https://www.djangoproject.com/download/)
-* [Github Actions]()
+* [Github Actions](https://docs.github.com/en/actions)
+* Postgresql Database.
+    - This could either be installed locally or via  [docker](https://www.docker.com/).
+      This [article](https://blog.crunchydata.com/blog/easy-postgresql-12-and-pgadmin-4-setup-with-docker) is an awesome resource on how to get Postgresql and pgadmin4  installed as containers.
+      
+    Create a database `django_actions`. Either using SQL or 3-party client like pgadmin4 or [dbeaver](https://dbeaver.io/)
+
 * [Docker](https://www.docker.com/)
 * [Docker Compose](https://docs.docker.com/compose/install/)
 

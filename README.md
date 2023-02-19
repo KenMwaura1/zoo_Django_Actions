@@ -24,6 +24,12 @@
     <br />
     <br />
   </p>
+  
+## Accompanying Article
+
+Read the accompanying article [here](https://dev.to/ken_mwaura1/beginners-guide-to-github-actions-django-and-docker-2om6)
+
+
 
 <!-- TABLE OF CONTENTS -->
 <details>
@@ -54,7 +60,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-<!--Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `KenMwaura1`, `zoo_Django_Actions`, `Ken_Mwaura1`, `kennedy-mwaura`, `kemwaura`, `gmail.com`, `py-crypo-bot`, -->
+<!--Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `KenMwaura1`, `zoo_Django_Actions`, `Ken_Mwaura1`, `kennedy-mwaura`, `kemwaura`, `gmail.com`, -->
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 

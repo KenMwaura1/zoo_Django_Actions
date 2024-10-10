@@ -10,7 +10,7 @@ jobs:
     strategy:
       max-parallel: 4
       matrix:
-        python-version: [3.7, 3.8, 3.9, "3.10"]
+        python-version: ["3.10", "3.11", "3.12"]
         database-name:
           - zoo_django_actions
         database-password:
@@ -40,7 +40,7 @@ jobs:
 
 
     steps:
-    - uses: actions/checkout@v4.1.7
+    - uses: actions/checkout@v4.2.1
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v5.2.0
       with:
@@ -101,17 +101,17 @@ jobs:
         ALLOWED_HOSTS: localhost
         GITHUB_WORKFLOW: True
         MODE: workflow
-    - uses: actions/checkout@v4.1.7
+    - uses: actions/checkout@v4.2.1
     - name: Build the images and start the containers
       run: |
         export GITHUB_WORKFLOW=True
         export MODE="Test"
-        docker-compose -f docker-compose.yml build
-        docker-compose -f docker-compose.yml up -d
-        # run: docker-compose up -d --build
+        docker compose -f docker-compose.yml build
+        docker compose -f docker-compose.yml up -d
+        # run: docker compose up -d --build
     - name: Stop containers
       if: always()
-      run: docker-compose -f "docker-compose.yml" down
+      run: docker compose -f "docker-compose.yml" down
 
 
 

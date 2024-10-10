@@ -15,7 +15,13 @@
 [![MIT License][license-shield]][license-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
+<<<<<<< Updated upstream
 <!-- PROJECT LOGO -->
+=======
+
+
+<!-- PROJECT LOGO --> 
+>>>>>>> Stashed changes
 
 <h3 align="center">Zoo django Actions</h3>
 

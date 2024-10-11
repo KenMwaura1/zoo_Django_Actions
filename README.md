@@ -15,10 +15,6 @@
 [![MIT License][license-shield]][license-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
-<!-- PROJECT LOGO -->
-=======
-
-
 <!-- PROJECT LOGO --> 
 
 <h3 align="center">Zoo django Actions</h3>
@@ -70,7 +66,7 @@ Read the accompanying article [here](https://dev.to/ken_mwaura1/beginners-guide-
 
 ### Built With
 
-* [Python 3.7+](https://www.python.org/downloads/)
+* [Python 3.9+](https://www.python.org/downloads/)
 * [Django 3.2.10](https://www.djangoproject.com/download/)
 * [Github Actions](https://docs.github.com/en/actions)
 * Postgresql Database.
@@ -93,7 +89,7 @@ To get started, you'll need to install the following:
 
 This is an example of how to list things you need to use the software and how to install them.
 
-* [Python 3.7](https://www.python.org/downloads/)
+* [Python 3.9](https://www.python.org/downloads/)
 
 ### Installation
 
